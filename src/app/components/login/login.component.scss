@@ -1,0 +1,29 @@
+.login {
+    padding: 15%;
+
+    &--hint {
+        margin-bottom: 1.5rem;
+        padding: 1rem 2rem;
+        border-radius: 5%;
+        background-color: #ffa07a42;
+    }
+
+    &--hint-field {
+        font-weight: bold;
+    }
+
+    &--title {
+        font-size: 1.15rem;
+        font-weight: 500;
+    }
+
+    &--form {
+        display: flex;
+        flex-flow: column;
+    }
+
+    .mat-raised-button.mat-primary {
+        color: black;
+        background-color: lightsalmon;
+    }
+}
