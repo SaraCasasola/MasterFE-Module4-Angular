@@ -1,0 +1,25 @@
+.menu {
+    width: 100%;
+    height: 1.5rem;
+    margin: 0;
+    display: flex;
+    background: #ffc4b3;
+
+    &--item {
+        margin-right: 2rem;
+        font-weight: bold;
+        list-style: none;
+        cursor: pointer;
+
+        &__selected {
+            color: purple;
+        }
+
+        &:hover,
+        &:focus {
+            outline: none;
+            font-size: 1rem;
+            color: purple;
+        }
+    }
+}

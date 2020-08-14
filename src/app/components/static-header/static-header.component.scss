@@ -1,13 +1,17 @@
-.header {
-    height: 4rem;
+.header {    
     position: fixed;
     top: 0;
     left: 0;
-    right: 0;
-    padding: 0 1.25rem;
-    display: flex;
-    align-items: center;
-    background: lightsalmon;
+    right: 0;    
+    z-index: 10;
+
+    &--info-container {  
+        height: 4rem;      
+        padding: 0 1.25rem;
+        display: flex;
+        align-items: center;
+        background: lightsalmon;
+    }
 
     &--logo {
         height: 70%;

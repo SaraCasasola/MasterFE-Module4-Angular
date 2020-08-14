@@ -10,14 +10,20 @@ import { MatButtonModule } from '@angular/material/button';
 
 import { StaticHeaderComponent } from './components/static-header/static-header.component';
 import { StaticFooterComponent } from './components/static-footer/static-footer.component';
-import { LoginComponent } from './components/login/login.component';
+import { LoginComponent } from './pages/login/login.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { HomeComponent } from './pages/home/home.component';
+import { AboutComponent } from './pages/about/about.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     StaticHeaderComponent,
     StaticFooterComponent,
-    LoginComponent
+    LoginComponent,
+    MenuComponent,
+    HomeComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
