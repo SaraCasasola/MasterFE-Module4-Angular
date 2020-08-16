@@ -16,6 +16,8 @@ import { MenuComponent } from './components/menu/menu.component';
 import { HomeComponent } from './pages/home/home.component';
 import { AboutComponent } from './pages/about/about.component';
 
+import { StorageServiceModule } from 'ngx-webstorage-service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +36,8 @@ import { AboutComponent } from './pages/about/about.component';
     ReactiveFormsModule,
     MatInputModule,
     MatFormFieldModule,
-    MatButtonModule
+    MatButtonModule,
+    StorageServiceModule 
   ],
   providers: [],
   bootstrap: [AppComponent]

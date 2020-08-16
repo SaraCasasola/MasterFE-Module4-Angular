@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
+import { LOCAL_STORAGE, StorageService } from 'ngx-webstorage-service';
 
 export interface UserLogin {
   username: string;
@@ -17,7 +18,7 @@ export class AuthService {
 
   private logged: boolean;
 
-  constructor() {
+  constructor(@Inject(LOCAL_STORAGE) private storage: StorageService) {
     this.logged = false;
   }
 
@@ -25,6 +26,9 @@ export class AuthService {
     this.logged = (userLogin.username === this.validUser.username) &&
       (userLogin.password === this.validUser.password);
 
+    if (this.logged) {
+      this.storeOnLocalStorage();
+    }
     return this.logged;
   }
 
@@ -42,5 +46,9 @@ export class AuthService {
 
   public getPassword(): string {
     return this.validUser.password;
+  }
+
+  private storeOnLocalStorage(): void {
+    this.storage.set('isMasterAngularUserLogged', true);
   }
 }
