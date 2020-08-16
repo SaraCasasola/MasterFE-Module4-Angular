@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {FormBuilder, FormGroup, FormControl, Validators, AbstractControl} from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -6,10 +8,38 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  userForm: FormGroup;
+  usernameFormControl: FormControl;
+  passwordFormControl: FormControl;
 
-  constructor() { }
+  constructor(private fb: FormBuilder, private authService: AuthService) {
+    this.initForm();
+   }
 
-  ngOnInit(): void {
+  ngOnInit(): void { }
+
+  initForm(): void {
+    this.userForm = this.fb.group({
+      username: ['', [Validators.required, this.validateUsername.bind(this)]],
+      password: ['', [Validators.required, this.validatePassword.bind(this)]]
+    });
+
+    this.usernameFormControl = this.userForm.get('username') as FormControl;
+    this.passwordFormControl = this.userForm.get('password') as FormControl;
+  }
+
+  private validateUsername(usernameFormControl: AbstractControl): { [key: string]: boolean } | null {
+      const validUsername = usernameFormControl.value === this.authService.getUsername();
+      return validUsername ? null : { invalidUsername: true };
+  }
+
+  private validatePassword(passwordFormControl: AbstractControl): { [key: string]: boolean } | null{
+      const validPassword = passwordFormControl.value === this.authService.getPassword();
+      return validPassword ? null : { invalidPassword: true };
+  }
+
+  onLogin(): void {
+    console.log("hola");
   }
 
 }

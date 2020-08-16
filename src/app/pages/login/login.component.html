@@ -5,15 +5,21 @@
   </div>
 
   <p class="login--title">LOGIN</p>
-  <form class="login--form">
+  <form class="login--form" [formGroup]='userForm'>
     <mat-form-field>
       <mat-label>Username</mat-label>
-      <input matInput>
+      <input matInput formControlName='username'>
+      <mat-error *ngIf="usernameFormControl.hasError('invalidUsername')">
+        El usuario no es correcto
+      </mat-error>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Password</mat-label>
-      <input matInput>
+      <input matInput formControlName='password'>
+      <mat-error *ngIf="passwordFormControl.hasError('invalidPassword')">
+        La contraseña no es correcta
+      </mat-error>
     </mat-form-field>
-    <button mat-raised-button color="primary">Login</button>
+    <button class="login--button" mat-raised-button color="primary" (click)="onLogin()">Login</button>
   </form>
 </section>

@@ -39,4 +39,8 @@ export class AuthService {
   public getUsername(): string {
     return this.validUser.username;
   }
+
+  public getPassword(): string {
+    return this.validUser.password;
+  }
 }
