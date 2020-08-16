@@ -1,5 +1,9 @@
 <ul class="menu">
-    <li class="menu--item" routerLink="/home" routerLinkActive="menu--item__selected">Home</li>
-    <li class="menu--item" routerLink="/login" routerLinkActive="menu--item__selected">Login</li>
-    <li class="menu--item" routerLink="/about" routerLinkActive="menu--item__selected">Acerca de</li>
+    <li *ngIf="!isUserLogin" class="menu--item" routerLink="/home" routerLinkActive="menu--item__selected">Home</li>
+    <li *ngIf="!isUserLogin" class="menu--item" routerLink="/login" routerLinkActive="menu--item__selected">Login</li>
+    <li *ngIf="!isUserLogin" class="menu--item" routerLink="/about" routerLinkActive="menu--item__selected">Acerca de</li>
+    <li *ngIf="isUserLogin" class="menu--item" routerLink="/dashboard" routerLinkActive="menu--item__selected">Dashboard</li>
+    <li *ngIf="isUserLogin" class="menu--item" routerLink="/galeria" routerLinkActive="menu--item__selected">Galeria</li>
+    <li *ngIf="isUserLogin" class="menu--item" routerLink="/crud" routerLinkActive="menu--item__selected">CRUD</li>
+    <li *ngIf="isUserLogin" class="menu--item" routerLink="/profile" routerLinkActive="menu--item__selected">Profile</li>
 </ul>

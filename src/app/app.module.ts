@@ -17,6 +17,10 @@ import { HomeComponent } from './pages/home/home.component';
 import { AboutComponent } from './pages/about/about.component';
 
 import { StorageServiceModule } from 'ngx-webstorage-service';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { GaleriaComponent } from './pages/galeria/galeria.component';
+import { CrudComponent } from './pages/crud/crud.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +30,11 @@ import { StorageServiceModule } from 'ngx-webstorage-service';
     LoginComponent,
     MenuComponent,
     HomeComponent,
-    AboutComponent
+    AboutComponent,
+    DashboardComponent,
+    GaleriaComponent,
+    CrudComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

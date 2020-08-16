@@ -1,5 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 import { LOCAL_STORAGE, StorageService } from 'ngx-webstorage-service';
+import { Subject } from 'rxjs';
 
 export interface UserLogin {
   username: string;
@@ -11,6 +12,8 @@ export interface UserLogin {
 })
 export class AuthService {
 
+  private localStorageLoginKey: string = 'IS_USER_LOGGED';
+
   private validUser: UserLogin = {
     username: 'master8@lemoncode.net',
     password: '12345678'
@@ -18,8 +21,11 @@ export class AuthService {
 
   private logged: boolean;
 
-  constructor(@Inject(LOCAL_STORAGE) private storage: StorageService) {
-    this.logged = false;
+  loginStatusChange: Subject<boolean>;
+
+  constructor(@Inject(LOCAL_STORAGE) private storage: StorageService) {    
+    this.loginStatusChange = new Subject<boolean>();
+    this.logged = this.storage.get(this.localStorageLoginKey) || false;
   }
 
   public login(userLogin: UserLogin): boolean {
@@ -28,6 +34,7 @@ export class AuthService {
 
     if (this.logged) {
       this.storeOnLocalStorage();
+      this.loginStatusChange.next(this.logged);
     }
     return this.logged;
   }
@@ -49,6 +56,6 @@ export class AuthService {
   }
 
   private storeOnLocalStorage(): void {
-    this.storage.set('isMasterAngularUserLogged', true);
+    this.storage.set(this.localStorageLoginKey, true);
   }
 }
