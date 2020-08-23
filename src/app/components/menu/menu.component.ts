@@ -9,13 +9,13 @@ import { Subscription } from 'rxjs';
 })
 export class MenuComponent implements OnInit, OnDestroy {
 
-  isUserLogin: boolean;
+  isUserLogged: boolean;
   userLoginSuscription: Subscription;
 
   constructor(private authService: AuthService) {
-    this.isUserLogin = this.authService.isLogged();
+    this.isUserLogged = this.authService.isLogged();
     this.userLoginSuscription = this.authService.loginStatusChange.subscribe((loginState) => {
-      this.isUserLogin = loginState;
+      this.isUserLogged = loginState;
     });
   }
 

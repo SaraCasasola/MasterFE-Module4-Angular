@@ -9,8 +9,13 @@
         height: 4rem;      
         padding: 0 1.25rem;
         display: flex;
-        align-items: center;
+        justify-content: space-between;
         background: lightsalmon;
+    }
+
+    &--info-section {
+        display: flex;
+        align-items: center;
     }
 
     &--logo {
@@ -22,5 +27,23 @@
         margin-left: 1.25rem;
         font-size: 1.15rem;
         font-weight: 500;
+    }
+
+    &--logout {
+        margin-left: 1.25rem;
+        border: none;
+        background: #ffc4b3;
+        font-weight: bold;
+        cursor: pointer;
+
+        &:hover {
+            font-size: 1rem;
+            color: purple;
+        }
+
+        &:focus,
+        &:active {
+            outline: none;
+        }
     }
 }

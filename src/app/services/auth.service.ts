@@ -1,6 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { LOCAL_STORAGE, StorageService } from 'ngx-webstorage-service';
 import { Subject } from 'rxjs';
+import { Router } from '@angular/router';
 
 export interface UserLogin {
   username: string;
@@ -12,7 +13,8 @@ export interface UserLogin {
 })
 export class AuthService {
 
-  private localStorageLoginKey: string = 'IS_USER_LOGGED';
+  private localStorageLoginKey = 'IS_USER_LOGGED';
+  private localStorageUsernameKey = 'USERNAME';
 
   private validUser: UserLogin = {
     username: 'master8@lemoncode.net',
@@ -23,7 +25,7 @@ export class AuthService {
 
   loginStatusChange: Subject<boolean>;
 
-  constructor(@Inject(LOCAL_STORAGE) private storage: StorageService) {    
+  constructor(@Inject(LOCAL_STORAGE) private storage: StorageService, private router: Router) {
     this.loginStatusChange = new Subject<boolean>();
     this.logged = this.storage.get(this.localStorageLoginKey) || false;
   }
@@ -33,7 +35,7 @@ export class AuthService {
       (userLogin.password === this.validUser.password);
 
     if (this.logged) {
-      this.storeOnLocalStorage();
+      this.storeOnLocalStorage(true, userLogin.username);
       this.loginStatusChange.next(this.logged);
     }
     return this.logged;
@@ -41,6 +43,8 @@ export class AuthService {
 
   public logout(): void {
     this.logged = false;
+    this.loginStatusChange.next(this.logged);
+    this.storeOnLocalStorage(false);
   }
 
   public isLogged(): boolean {
@@ -48,14 +52,27 @@ export class AuthService {
   }
 
   public getUsername(): string {
+    return this.storage.get(this.localStorageUsernameKey);
+  }
+
+  public getValidUsername(): string {
     return this.validUser.username;
   }
 
-  public getPassword(): string {
+  public getValidPassword(): string {
     return this.validUser.password;
   }
 
-  private storeOnLocalStorage(): void {
-    this.storage.set(this.localStorageLoginKey, true);
+  public goToLoginPage(): void {
+    this.router.navigate(['/login']);
+  }
+
+  public goToDashboardPage(): void {
+    this.router.navigate(['/dashboard']);
+  }
+
+  private storeOnLocalStorage(loginValue: boolean, username: string = ''): void {
+    this.storage.set(this.localStorageLoginKey, loginValue);
+    this.storage.set(this.localStorageUsernameKey, username);
   }
 }

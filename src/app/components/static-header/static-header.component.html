@@ -1,7 +1,13 @@
 <header class="header">
     <div class="header--info-container">
-        <img class="header--logo" [src]="angularLogo">
-        <span class="header--title">Master FE Module 4 Angular</span>
+        <section class="header--info-section">
+            <img class="header--logo" [src]="angularLogo">
+            <span class="header--title">Master FE Module 4 Angular</span>
+        </section>
+        <section *ngIf="isUserLogged" class="header--info-section">
+            <span>{{username}}</span>
+            <button class="header--logout" (click)="onLogout()">Logout</button>
+        </section>
     </div>
     <app-menu class="header--menu"></app-menu>
 </header>

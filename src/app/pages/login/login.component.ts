@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, FormControl, Validators, AbstractControl} from '@angular/forms';
 import { AuthService, UserLogin } from '../../services/auth.service';
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -14,6 +13,9 @@ export class LoginComponent implements OnInit {
   passwordFormControl: FormControl;
 
   constructor(private fb: FormBuilder, private authService: AuthService) {
+    if (this.authService.isLogged()) {
+      this.authService.goToDashboardPage();
+    }
     this.initUser();
     this.initForm();
   }
@@ -38,18 +40,19 @@ export class LoginComponent implements OnInit {
   }
 
   private validateUsername(usernameFormControl: AbstractControl): { [key: string]: boolean } | null {
-      const validUsername = usernameFormControl.value === this.authService.getUsername();
+      const validUsername = usernameFormControl.value === this.authService.getValidUsername();
       return validUsername ? null : { invalidUsername: true };
   }
 
   private validatePassword(passwordFormControl: AbstractControl): { [key: string]: boolean } | null{
-      const validPassword = passwordFormControl.value === this.authService.getPassword();
+      const validPassword = passwordFormControl.value === this.authService.getValidPassword();
       return validPassword ? null : { invalidPassword: true };
   }
 
   onLogin(): void {
     if (this.userForm.valid) {
       this.authService.login(this.user);
+      this.authService.goToDashboardPage();
     }
   }
 
