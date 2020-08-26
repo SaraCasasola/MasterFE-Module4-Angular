@@ -1,0 +1,22 @@
+<div class="gallery">
+  <h4 class="gallery--title"> Galeria</h4>
+
+  <div class="gallery--preview-container" [ngStyle]="{'height': previewHeight+'rem'}">
+    <ng-container *ngFor="let galleryItem of galleryContent; let i = index">
+      <img class="gallery--preview-item" *ngIf="i === currentgalleryItem" [src]="galleryItem.src"/>
+    </ng-container>    
+  </div>
+
+  <div class="gallery--carousel">
+    <ng-container *ngFor="let galleryItem of galleryContent; let i = index">
+      <img class="gallery--carousel-item" [src]="galleryItem.src" [ngClass]="{'gallery--carousel-item__selected':i === currentgalleryItem}" (click)="goToContent(galleryItem.id)"/>
+    </ng-container>    
+  </div>
+
+  <button mat-raised-button class="gallery--control-item" color="primary" (click)="onPreviousClick()" [disabled]="isPlaying || isPreviusButtonDisabled()">Anterior</button>
+  <button mat-raised-button class="gallery--control-item" color="primary" (click)="onNextClick()" [disabled]="isPlaying || isNextButtonDisabled()">Siguiente</button>
+  <button mat-raised-button class="gallery--control-item" color="secondary" (click)="onBiggerClick()" [disabled]="isPlaying">Aumentar</button>
+  <button mat-raised-button class="gallery--control-item" color="secondary" (click)="onSmallerClick()" [disabled]="isPlaying">Disminuir</button>
+  <button *ngIf="!isPlaying" mat-raised-button class="gallery--control-item" color="secondary" (click)="onPlayClick()">Play</button>
+  <button *ngIf="isPlaying" mat-raised-button class="gallery--control-item" color="primary" (click)="onStopClick()">Stop</button>
+</div>

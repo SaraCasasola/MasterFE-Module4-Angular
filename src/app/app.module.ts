@@ -18,7 +18,7 @@ import { AboutComponent } from './pages/about/about.component';
 
 import { StorageServiceModule } from 'ngx-webstorage-service';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { GaleriaComponent } from './pages/galeria/galeria.component';
+import { GalleryComponent } from './pages/gallery/gallery.component';
 import { CrudComponent } from './pages/crud/crud.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 
@@ -32,7 +32,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
     HomeComponent,
     AboutComponent,
     DashboardComponent,
-    GaleriaComponent,
+    GalleryComponent,
     CrudComponent,
     ProfileComponent
   ],
