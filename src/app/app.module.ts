@@ -21,6 +21,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { GalleryComponent } from './pages/gallery/gallery.component';
 import { CrudComponent } from './pages/crud/crud.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { RotateDirective } from './directives/rotate.directive';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ProfileComponent } from './pages/profile/profile.component';
     DashboardComponent,
     GalleryComponent,
     CrudComponent,
-    ProfileComponent
+    ProfileComponent,
+    RotateDirective
   ],
   imports: [
     BrowserModule,

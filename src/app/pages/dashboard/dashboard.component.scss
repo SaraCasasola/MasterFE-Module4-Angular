@@ -1,0 +1,21 @@
+.dashboard {
+  padding: 5rem;
+
+  &--section {
+    margin-bottom: 7.5rem;
+  }
+
+  &--section-title {
+    margin-bottom: 5rem;
+  }
+
+  &--text {
+      width: fit-content;
+      cursor: pointer;
+  }
+
+  &--img {
+    height: 30vh;
+    cursor: pointer;
+  }
+}

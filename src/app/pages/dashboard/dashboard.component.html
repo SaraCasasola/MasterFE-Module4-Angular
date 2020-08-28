@@ -1,1 +1,23 @@
-<p>dashboard works!</p>
+<div class="dashboard">
+    <h1>En esta pagina vas a poder rotar elementos</h1>
+
+    <section class="dashboard--section">
+        <p class="dashboard--section-title">Haz click sobre la imagen de abajo para rotarla: Initial Rotate - 0 Step - Default</p>
+        <img class="dashboard--img" rotate src="/assets/gallery/photo_1.jpg"/>
+    </section>
+
+    <section class="dashboard--section">
+        <p class="dashboard--section-title">Haz click sobre la imagen de abajo para rotarla: Initial Rotate - 45 Step - 25</p>
+        <img class="dashboard--img" rotate="45" step="25" src="/assets/gallery/photo_2.jpg"/>
+    </section>
+
+    <section class="dashboard--section">
+        <p class="dashboard--section-title">Haz click sobre la imagen de abajo para rotarla: Initial Rotate - 15 Step - 50</p>
+        <img class="dashboard--img" rotate="15" step="50" src="/assets/gallery/photo_3.jpg"/>
+    </section>
+
+    <section class="dashboard--section">
+        <p>A el texto de abajo no le afecta la directiva rotate</p>
+        <h1 class="dashboard--text" rotate="45" step="15">TEXTO PARA ROTAR</h1>
+    </section>
+</div>
