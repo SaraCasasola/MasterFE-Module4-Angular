@@ -41,6 +41,10 @@
       border-radius: 0.5rem;
     }
 
+    &__disabled {
+      cursor: not-allowed;
+    }
+
     &:last-child {
       margin-right: 0;
     }
