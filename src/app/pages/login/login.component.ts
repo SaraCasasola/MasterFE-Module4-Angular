@@ -11,6 +11,7 @@ export class LoginComponent implements OnInit {
   userForm: FormGroup;
   usernameFormControl: FormControl;
   passwordFormControl: FormControl;
+  showSpinner: boolean;
 
   constructor(private fb: FormBuilder, private authService: AuthService) {
     if (this.authService.isLogged()) {
@@ -18,6 +19,7 @@ export class LoginComponent implements OnInit {
     }
     this.initUser();
     this.initForm();
+    this.showSpinner = false;
   }
 
   ngOnInit(): void { }
@@ -51,8 +53,11 @@ export class LoginComponent implements OnInit {
 
   onLogin(): void {
     if (this.userForm.valid) {
-      this.authService.login(this.user);
-      this.authService.goToDashboardPage();
+      this.showSpinner = true;
+      this.authService.login(this.user).subscribe(() => {
+        this.showSpinner = false;
+        this.authService.goToDashboardPage();
+      });
     }
   }
 

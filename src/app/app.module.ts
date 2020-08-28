@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { StaticHeaderComponent } from './components/static-header/static-header.component';
 import { StaticFooterComponent } from './components/static-footer/static-footer.component';
@@ -47,7 +48,8 @@ import { RotateDirective } from './directives/rotate.directive';
     MatInputModule,
     MatFormFieldModule,
     MatButtonModule,
-    StorageServiceModule 
+    StorageServiceModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

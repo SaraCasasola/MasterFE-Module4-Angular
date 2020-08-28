@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 import { LOCAL_STORAGE, StorageService } from 'ngx-webstorage-service';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
 export interface UserLogin {
@@ -30,15 +30,20 @@ export class AuthService {
     this.logged = this.storage.get(this.localStorageLoginKey) || false;
   }
 
-  public login(userLogin: UserLogin): boolean {
+  public login(userLogin: UserLogin): Observable<boolean> {
     this.logged = (userLogin.username === this.validUser.username) &&
       (userLogin.password === this.validUser.password);
 
-    if (this.logged) {
-      this.storeOnLocalStorage(true, userLogin.username);
-      this.loginStatusChange.next(this.logged);
-    }
-    return this.logged;
+    return new Observable((observer) => {
+      setTimeout(() => {
+        if (this.logged) {
+          this.storeOnLocalStorage(true, userLogin.username);
+          this.loginStatusChange.next(this.logged);
+        }
+        observer.next(this.logged);
+        observer.complete();
+      }, 3000);
+    });
   }
 
   public logout(): void {

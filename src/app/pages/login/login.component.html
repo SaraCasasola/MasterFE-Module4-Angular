@@ -19,7 +19,10 @@
       <mat-error *ngIf="passwordFormControl.hasError('invalidPassword')">
         La contraseña no es correcta
       </mat-error>
-    </mat-form-field>
-    <button class="login--button" mat-raised-button color="primary" (click)="onLogin()">Login</button>
+    </mat-form-field>    
+    <button class="login--button" mat-raised-button color="primary" (click)="onLogin()">
+      <mat-spinner *ngIf="showSpinner"></mat-spinner>
+      <ng-container *ngIf="!showSpinner">Login</ng-container>
+    </button>
   </form>
 </section>
