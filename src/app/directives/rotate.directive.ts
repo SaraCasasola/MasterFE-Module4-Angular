@@ -19,9 +19,13 @@ export class RotateDirective implements OnInit {
     this.setRotation();
   }
 
-  @HostListener('mousedown') onMouseEnter(): void {
+  @HostListener('mousedown', ['$event']) onMouseEnter($event): void {
     if (this.el.nativeElement.tagName !== this.imgTagName) { return; }
-    this.rotation += Number(this.step);
+    if ($event.shiftKey) {
+      this.rotation -= Number(this.step);
+    } else {
+      this.rotation += Number(this.step);
+    }
     this.setRotation();
   }
 
